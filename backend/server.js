@@ -8,6 +8,9 @@ import router from "./apiIntegration/apiRouter.js";
 import session from "express-session";
 import {RedisStore} from "connect-redis"; 
 import client from "./middleware/redisClient.js";
+import compression from "compression";
+import os from 'os'
+console.log("core:-",os.cpus().length);
 // import { createRequire } from "module";
 
 dotenv.config();
@@ -21,6 +24,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 // const RedisStore= connectRedis(session);
+app.use(compression())
  
 app.use(
   session({
